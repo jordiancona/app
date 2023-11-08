@@ -15,11 +15,12 @@ class Plotter:
     def __init__(self, title = "DM Plotter", parameters = []):
         self.titletxt = title
         self.parameters = parameters
+        self.statustxt = ""
         self.Initialize()
         
     def Initialize(self):
         self.root = tk.Tk()
-        self.status
+        self.status = StringVar(value = self.statustxt)
 
         self.framerun = Frame()
         self.framerun.pack(expand = TRUE)
@@ -31,7 +32,7 @@ class Plotter:
         self.frameInformation.pack(expand = TRUE)
 
         # Run
-        self.buttonrun = Button(self.framerun, width = 30, height = 2, textvariable = "Pause", command = self.Protprofiles)
+        self.buttonrun = Button(self.framerun, width = 30, height = 2, textvariable = "Pause", command = self.Plotprofiles)
         self.buttonrun.pack(side = TOP, padx = 5, pady = 5)
         
     def SaveParameters(self):
@@ -42,6 +43,7 @@ class Plotter:
     def Plotprofiles(self, parameters):
         fig = plt.Figure()
         r = np.linspace(0, self.radio, 101)
+        self.fig.canvas.manager.window.update()
         plt.show()
 
     def Start(self):
