@@ -46,7 +46,11 @@ class Plotter:
         self.fig.canvas.manager.window.update()
         plt.show()
 
-    def Start(self):
+    def Start(self, func = []):
+        if len(func == 3):
+            self.InitcFunc = func[0]
+            self.DrawFunc = func[1]
+            
         self.root.mainloop()
 
     def Quit(self):
