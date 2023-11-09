@@ -42,17 +42,19 @@ class Plotter:
             
     def Plotprofiles(self, parameters):
         fig = plt.Figure()
-        r = np.linspace(0, self.radio, 101)
+        self.DrawFunc(parameters)
         self.fig.canvas.manager.window.update()
         plt.show()
 
     def Start(self, func = []):
-        if len(func == 3):
+        if len(func) == 3:
             self.InitcFunc = func[0]
             self.DrawFunc = func[1]
-            
+            self.InitcFunc()
+            self.Plotprofiles()
         self.root.mainloop()
 
     def Quit(self):
         plt.close("all")
         self.root.quit()
+        self.root.destroy()
