@@ -33,15 +33,17 @@ class Plotter:
         self.frameInformation = Frame()
         self.frameInformation.pack(expand = TRUE)
 
-        self.alpha = Entry(self.root, width = 10)
-        self.alpha.pack()
         # Run
         self.buttonrun = Button(self.framerun, text = "Run", width = 20, height = 2, textvariable = "Pause", command = self.Plotprofiles)
-        self.buttonrun.pack(side = BOTTOM, padx = 5, pady = 5)
+        self.buttonrun.pack(side = TOP, padx = 0, pady = 5)
+        
+        self.int_var = tk.IntVar()
+        self.nfw = Checkbutton(self.root, text = "NFW", variable = self.int_var)
+        self.nfw.pack(side = TOP, padx = 5, pady = 5)
+
             
     def Plotprofiles(self, parameters):
-        fig = plt.Figure()
-        self.DrawFunc(parameters)
+        fig = plt.Figure()        
         self.fig.canvas.manager.window.update()
         plt.show()
 
@@ -57,3 +59,6 @@ class Plotter:
         plt.close("all")
         self.root.quit()
         self.root.destroy()
+
+    def Dehnen(self):
+        pass        
