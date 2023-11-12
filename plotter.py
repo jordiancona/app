@@ -41,6 +41,8 @@ class Plotter:
         self.nfw = Checkbutton(self.root, text = "NFW", variable = self.int_var)
         self.nfw.pack(side = TOP, padx = 5, pady = 5)
 
+        self.hernquist = Checkbutton(self.root, text = "Hernquist", variable = self.int_var)
+        self.nfw.pack(side = TOP, padx = 10, pady = 5)
             
     def Plotprofiles(self, parameters):
         fig = plt.Figure()        
