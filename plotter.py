@@ -28,33 +28,38 @@ class Plotter:
         self.framerun.pack(expand = TRUE)
         self.frameSettings = Frame()
         self.frameSettings.pack(expand = TRUE)
-        self.frameParameters = Frame()
-        self.frameParameters.pack(expand = TRUE)
         self.frameInformation = Frame()
         self.frameInformation.pack(expand = TRUE)
+        self.framequit = Frame()
+        self.framequit.pack(expand = TRUE)
 
         # Run
-        self.buttonrun = Button(self.framerun, text = "Run", width = 20, height = 2, textvariable = "Pause", command = self.Plotprofiles)
+        self.buttonrun = Button(self.framerun, text = "Run", width = 20, height = 2, command = self.Plotprofiles)
         self.buttonrun.pack(side = TOP, padx = 0, pady = 5)
+
+        #Quit
+        self.buttonquit = Button(self.framequit, text = "Quit", width = 20, height = 2, textvariable = "Cancel", command = self.Quit)
+        self.buttonquit.pack(side = TOP, padx = 0, pady = 5)
         
-        self.int_var = tk.IntVar()
-        self.nfw = Checkbutton(self.root, text = "NFW", variable = self.int_var)
+        self.nfw_var = IntVar()
+        self.hernq_var = IntVar()
+        self.nfw = Checkbutton(self.frameSettings, text = "NFW", variable = self.nfw_var)
         self.nfw.pack(side = TOP, padx = 5, pady = 5)
 
-        self.hernquist = Checkbutton(self.root, text = "Hernquist", variable = self.int_var)
-        self.nfw.pack(side = TOP, padx = 10, pady = 5)
+        self.hernquist = Checkbutton(self.frameSettings, text = "Hernquist", variable = self.hernq_var)
+        self.hernquist.pack(side = TOP, padx = 10, pady = 5)
+
+        self.parameters = [self.nfw, self.hernquist]
             
     def Plotprofiles(self, parameters):
         fig = plt.Figure()        
         self.fig.canvas.manager.window.update()
+        for profile in self.parameters:
+            if profile.get() == 1:
+                
         plt.show()
 
     def Start(self, func = []):
-        if len(func) == 3:
-            self.InitcFunc = func[0]
-            self.DrawFunc = func[1]
-            self.InitcFunc()
-            self.Plotprofiles()
         self.root.mainloop()
 
     def Quit(self):
