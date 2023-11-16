@@ -44,7 +44,13 @@ class Plotter:
 
         # Parameters
         for parameter in self.parameters:
-            
+            can = Canvas(self.frameParameters)
+
+            lab = Label(can, width = 25, height = 1, text = parameter.__name__+"", anchor = W, takefocus = 0)
+            lab.pack(side = 'left')
+
+            ent = Entry(can, width = 11)
+            ent.insert(0, str(parameter()))
             
     def setStatusStr(self,newStatus):
             self.statusStr = newStatus
