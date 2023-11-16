@@ -15,7 +15,8 @@ class Plotter:
     def __init__(self, title = "DM Plotter", parameters = []):
         self.titletxt = title
         self.parameters = parameters
-        self.statustxt = "Hello"
+        self.entries = {}
+        self.statustxt = ""
         self.Initialize()
         
     def Initialize(self):
@@ -37,19 +38,17 @@ class Plotter:
         self.buttonrun = Button(self.framerun, text = "Run", width = 20, height = 2, command = self.Plotprofiles)
         self.buttonrun.pack(side = TOP, padx = 0, pady = 5)
 
-        #Quit
+        # Quit
         self.buttonquit = Button(self.framequit, text = "Quit", width = 20, height = 2, textvariable = "Cancel", command = self.Quit)
         self.buttonquit.pack(side = TOP, padx = 0, pady = 5)
-        
-        self.nfw_var = IntVar()
-        self.hernq_var = IntVar()
-        self.nfw = Checkbutton(self.frameSettings, text = "NFW", variable = self.nfw_var)
-        self.nfw.pack(side = TOP, padx = 5, pady = 5)
 
-        self.hernquist = Checkbutton(self.frameSettings, text = "Hernquist", variable = self.hernq_var)
-        self.hernquist.pack(side = TOP, padx = 10, pady = 5)
-
-        self.parameters = [self.nfw, self.hernquist]
+        # Parameters
+        for parameter in self.parameters:
+            
+            
+    def setStatusStr(self,newStatus):
+            self.statusStr = newStatus
+            self.status.set(self.statusStr)
             
     def Plotprofiles(self, parameters):
         fig = plt.Figure()        
@@ -67,5 +66,11 @@ class Plotter:
         self.root.quit()
         self.root.destroy()
 
+    def SaveParameters(self):
+        for parameter in parameters:
+            parameter(float(self.entries[parameter].get()))
+            self.setStatus
+
     def Dehnen(self):
+        
         return rho0/((r/a)**alpha*(1+r/a)**(beta-alpha))
