@@ -56,7 +56,7 @@ class Plotter:
         self.fig.canvas.manager.window.update()
         for profile in self.parameters:
             if profile.get() == 1:
-                
+                plot()
         plt.show()
 
     def Start(self, func = []):
@@ -68,4 +68,4 @@ class Plotter:
         self.root.destroy()
 
     def Dehnen(self):
-        pass        
+        return rho0/((r/a)**alpha*(1+r/a)**(beta-alpha))
