@@ -51,6 +51,11 @@ class Plotter:
 
             ent = Entry(can, width = 11)
             ent.insert(0, str(parameter()))
+            ent.pack(side = 'left')
+
+            can.pack(side = 'top')
+
+            self.entries[parameter] = ent
             
     def setStatusStr(self,newStatus):
             self.statusStr = newStatus
@@ -59,9 +64,7 @@ class Plotter:
     def Plotprofiles(self, parameters):
         fig = plt.Figure()        
         self.fig.canvas.manager.window.update()
-        for profile in self.parameters:
-            if profile.get() == 1:
-                plot()
+        plot()
         plt.show()
 
     def Start(self, func = []):
