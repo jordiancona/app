@@ -22,7 +22,7 @@ class Plotter:
     def Initialize(self):
         self.root = tk.Tk()
         self.root.title(self.titletxt)
-        self.root.geometry("350x350")
+        self.root.geometry("300x300")
         self.status = StringVar(value = self.statustxt)
 
         self.framerun = Frame()
@@ -33,6 +33,8 @@ class Plotter:
         self.frameInformation.pack(expand = TRUE)
         self.framequit = Frame()
         self.framequit.pack(expand = TRUE)
+        self.frameParameters = Frame()
+        self.frameParameters.pack(expand = TRUE)
 
         # Run
         self.buttonrun = Button(self.framerun, text = "Run", width = 20, height = 2, command = self.Plotprofiles)
@@ -60,14 +62,20 @@ class Plotter:
     def setStatusStr(self,newStatus):
             self.statusStr = newStatus
             self.status.set(self.statusStr)
+
+    def NFW(self, r):
+        a = 1
+        rho0 = 0.5
+        return rho0/((r/a)**1*(1+r/a)**2)
             
-    def Plotprofiles(self, parameters):
-        fig = plt.Figure()        
-        self.fig.canvas.manager.window.update()
-        plot()
+    def Plotprofiles(self):
+        self.fig = plt.Figure()
+        r = np.linspace(0,4,101)
+        #self.fig.canvas.manager.window.update()
+        plt.plot(r, NFW(r), lw = 0.5)
         plt.show()
 
-    def Start(self, func = []):
+    def Start(self):
         self.root.mainloop()
 
     def Quit(self):
@@ -79,7 +87,3 @@ class Plotter:
         for parameter in parameters:
             parameter(float(self.entries[parameter].get()))
             self.setStatus
-
-    def Dehnen(self):
-        
-        return rho0/((r/a)**alpha*(1+r/a)**(beta-alpha))
